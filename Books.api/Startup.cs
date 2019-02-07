@@ -1,4 +1,5 @@
-﻿using Books.api.Context;
+﻿using AutoMapper;
+using Books.api.Context;
 using Books.api.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,6 +28,13 @@ namespace Books.api
             services.AddDbContext<BooksContext>(o => o.UseSqlServer(connectionString));
 
             services.AddScoped<IBooksRepository, BooksRepository>();
+
+            //services.AddAutoMapper();
+
+            Mapper.Initialize(cfg =>
+            {
+                cfg.AddProfile<BooksProfile>();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

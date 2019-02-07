@@ -1,4 +1,5 @@
-﻿using Books.api.Services;
+﻿using Books.api.Filters;
+using Books.api.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace Books.api.Controllers
         }
 
         [HttpGet]
+        [BooksResultFilter]
         public async Task<IActionResult> GetBooks()
         {
             var bookEntities = await _repo.GetBooksAsync();
